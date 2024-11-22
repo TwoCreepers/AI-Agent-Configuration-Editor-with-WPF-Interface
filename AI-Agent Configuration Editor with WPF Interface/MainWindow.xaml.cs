@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 
-namespace AIAgentConfigurationEditorwithWPFInterface
+namespace AI_Agent_Configuration_Editor_with_WPF_Interface
 {
     public class VirtualPetConfig
     {

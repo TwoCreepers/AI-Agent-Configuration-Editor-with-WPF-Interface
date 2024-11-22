@@ -1,7 +1,7 @@
-﻿<Application x:Class="AIAgentConfigurationEditorwithWPFInterface.App"
+﻿<Application x:Class="AI_Agent_Configuration_Editor_with_WPF_Interface.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AIAgentConfigurationEditorwithWPFInterface"
+             xmlns:local="clr-namespace:AI_Agent_Configuration_Editor_with_WPF_Interface"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
