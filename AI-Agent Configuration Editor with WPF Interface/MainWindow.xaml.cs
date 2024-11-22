@@ -1,13 +1,9 @@
-﻿using Microsoft.Win32;
-using System.ComponentModel;
-using System.IO;
+﻿using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using Windows.UI.ViewManagement;
+using System.Windows;
 
 namespace AIAgentConfigurationEditorwithWPFInterface
 {
@@ -281,8 +277,7 @@ namespace AIAgentConfigurationEditorwithWPFInterface
                 FileName = "setting"
             };
             var result = openFileDialog.ShowDialog();
-            result ??= false;
-            if (!result.Value)
+            if (!result.HasFlag(System.Windows.Forms.DialogResult.OK))
             {
                 return;
             }
@@ -294,15 +289,15 @@ namespace AIAgentConfigurationEditorwithWPFInterface
         }
         private void SaveAsFileCommand(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new()
+            System.Windows.Forms.SaveFileDialog saveFileDialog = new()
             {
                 Filter = "json文件 (*.json)|*.json|所有文件 (*.*)|*.*",
                 FilterIndex = 1,
-                FileName = "setting"
+                FileName = "setting",
+                AddExtension = true
             };
             var result = saveFileDialog.ShowDialog();
-            result ??= false;
-            if (!result.Value)
+            if (!result.HasFlag(System.Windows.Forms.DialogResult.OK))
             {
                 return;
             }
@@ -315,24 +310,24 @@ namespace AIAgentConfigurationEditorwithWPFInterface
         {
             if (!m_是否存在未保存的更改)
             {
-                Application.Current.Shutdown();
+                System.Windows.Application.Current.Shutdown();
                 return;
             }
-            var result = MessageBox.Show(
+            var result = System.Windows.Forms.MessageBox.Show(
             "你的更改尚未保存，是否保存？",
             "提示",
-            MessageBoxButton.YesNoCancel,
-            MessageBoxImage.Warning
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Warning
             );
             switch (result)
             {
-                case MessageBoxResult.Yes:
-                    Application.Current.Shutdown();
+                case System.Windows.Forms.DialogResult.Yes:
+                    System.Windows.Application.Current.Shutdown();
                     break;
-                case MessageBoxResult.No:
-                    Application.Current.Shutdown();
+                case System.Windows.Forms.DialogResult.No:
+                    System.Windows.Application.Current.Shutdown();
                     break;
-                case MessageBoxResult.Cancel:
+                case System.Windows.Forms.DialogResult.Cancel:
                     break;
             }
         }
