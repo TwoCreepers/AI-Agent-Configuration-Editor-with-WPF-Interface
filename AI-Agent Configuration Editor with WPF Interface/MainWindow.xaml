@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Title="AI-Agent 图形化配置编辑器" Height="720" Width="1280" Icon="/Resources/icon.ico">
     <Window.Resources>
-        
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <!--Setter Property="Background" Value="#FBFCF7" /-->
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrush}}"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <!-- 菜单栏 -->
@@ -39,227 +47,206 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Grid Height="auto" Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <Border Grid.Row="0">
+                <Grid Height="auto" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="名称"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="名称"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                          ToolTip="桌宠的名称，例如‘芙宁娜’，影响展示在文本交互界面的名称（独立于AI人设）"
                                  Name="名称"/>
-                </Border>
 
-            </Grid>
-            <Grid Height="auto" Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1">
+                <Grid Height="auto" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="AI人设"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="AI人设"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                          ToolTip="AI人设，留空为默认AI人设"
                                  Name="AI人设"/>
-                </Border>
 
-            </Grid>
-            <Grid Height="auto" Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="2">
+                <Grid Height="auto" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="音量"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="音量"/></TextBlock>
+                    <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="15*"/>
                             <ColumnDefinition Width="1*"/>
+
                         </Grid.ColumnDefinitions>
-                        <Slider Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" ValueChanged="MySlider_ValueChanged"
+                        <Slider Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" ValueChanged="MySlider_ValueChanged" 
                         ToolTip="桌宠的音量大小，范围为0~100的整数数"
                                 Name="音量"/>
                         <TextBlock Grid.Column="1" Text="{Binding ElementName=音量, Path=Value, StringFormat={}{0:0}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
-                </Border>
 
-            </Grid>
-            <Grid Height="auto" Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="3">
+                <Grid Height="auto" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="大小"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="大小"/></TextBlock>
+                    <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="15*"/>
                             <ColumnDefinition Width="1*"/>
+
                         </Grid.ColumnDefinitions>
-                        <Slider Minimum="10" Maximum="1000" VerticalAlignment="Center"  ValueChanged="MySlider_ValueChanged"
+                        <Slider Minimum="10" Maximum="1000" VerticalAlignment="Center"  ValueChanged="MySlider_ValueChanged" 
                         ToolTip="桌宠的大小，范围为10~1000"
                                 Name="大小"/>
                         <TextBlock Grid.Column="1" Text="{Binding ElementName=大小, Path=Value, StringFormat={}{0:0}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
-                </Border>
 
-            </Grid>
-            <Grid Height="auto" Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="4">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="录音阈值"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="录音阈值"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                               PreviewTextInput="NumberTextBox_PreviewTextInput" InputMethod.IsInputMethodEnabled="False"
                          ToolTip="设置桌宠开始录音的外界声音的最小阈值（越小越容易启动录音）（非必要不要改变此阈值）"
                                 Name="录音阈值"/>
-                </Border>
+                </Grid>
+            </Border>
+            <Border Grid.Row="5">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            </Grid>
-            <Grid Height="auto" Grid.Row="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="等待停止录音时间"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="等待停止录音时间"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                              PreviewTextInput="NumberTextBox_PreviewTextInput" InputMethod.IsInputMethodEnabled="False"
                          ToolTip="设设置等待用户说完一句话的时间（就是外界没有说话声后过多长时间停止录音并继续运行后续代码），单位：秒"
                                  Name="等待停止录音时间"/>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="6">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="6">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="聊天增强概率"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="聊天增强概率"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                              PreviewTextInput="NumberTextBox_PreviewTextInput" InputMethod.IsInputMethodEnabled="False"
                          ToolTip="设置聊天模式下使用聊天增强微调模型的概率，范围为0~无穷，小于2时永久使用微调模型，越大越倾向使用未经微调的GPT生成回复（数字越小，AI回复越像人类，但是逻辑会越差，反之则相反）"
                                  Name="聊天增强概率"/>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="7">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="7">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="主动聊天概率"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="主动聊天概率"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="False" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                              PreviewTextInput="NumberTextBox_PreviewTextInput" InputMethod.IsInputMethodEnabled="False"
                          ToolTip="设置桌宠使用视觉能力主动发起聊天的概率，数字越小(>0)，概率越大。当设置为0时，关闭此功能"
                                 Name="主动聊天概率"/>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="8">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="角色外观"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <ComboBox SelectionChanged="MyComboBox_SelectionChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="角色外观"/></TextBlock>
+                    <ComboBox Grid.Column="1" SelectionChanged="MyComboBox_SelectionChanged" 
                     ToolTip="桌宠人物文件夹名"
                                  Name="角色外观">
 
                     </ComboBox>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="9">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="9">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="语言模型"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <ComboBox SelectionChanged="MyComboBox_SelectionChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="语言模型"/></TextBlock>
+                    <ComboBox Grid.Column="1" SelectionChanged="MyComboBox_SelectionChanged" 
                     ToolTip="【仅使用本地(local)文本转语音可用，否则不要更改此项】更改文本转语音的说话人"
                                   Name="语言模型">
 
                     </ComboBox>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="10">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="语言模型位置"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <ComboBox SelectionChanged="MyComboBox_SelectionChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="语言模型位置"/></TextBlock>
+                    <ComboBox Grid.Column="1" SelectionChanged="MyComboBox_SelectionChanged" 
                     ToolTip="选择使用本地文本转语音或服务器文本转语音，可选['local','server']，如果电脑带有显卡，建议使用填写local，注意，软件默认不带此本地功能包，使用前先下载本地文本转语音包"
                                    Name="语言模型位置">
                         <ComboBoxItem>
@@ -269,22 +256,20 @@
                             <Run Language="zh-cn" Text="本地"/>
                         </ComboBoxItem>
                     </ComboBox>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="11">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="11">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="回答模式"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <ComboBox SelectionChanged="MyComboBox_SelectionChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="回答模式"/></TextBlock>
+                    <ComboBox Grid.Column="1" SelectionChanged="MyComboBox_SelectionChanged" 
                     ToolTip="AI回答的模式"
                                    Name="回答模式">
                         <ComboBoxItem>
@@ -294,100 +279,90 @@
                             <Run Language="zh-cn" Text="唤醒后AI回答"/>
                         </ComboBoxItem>
                     </ComboBox>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="12">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="是否启用统筹控制智能家居"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Click="MyCheckBox_Click"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="是否启用统筹控制智能家居"/></TextBlock>
+                    <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MyCheckBox_Click"
                           ToolTip="选择是否启用AI统筹控制智能家居（兼容米家设备的都可以兼容），注意：启用前请先启动 一键绑定米家.exe 绑定智能设备账号"
                                     Name="是否启用统筹控制智能家居">
-
                     </CheckBox>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="13">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="13">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="唤醒文本"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="唤醒文本"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                          ToolTip="唤醒AI的文本回复词库, 以“，”分割"
                                      Name="唤醒文本"/>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="14">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="14">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="监听文本"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="监听文本"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                          ToolTip="检测到声音时AI的文本回复词库, 以“，”分割"
                                      Name="监听文本"/>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="15">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="思考文本"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="思考文本"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                          ToolTip="AI思考时的文本回复词库, 以“，”分割"
                                      Name="思考文本"/>
-                </Border>
-            </Grid>
-            <Grid Height="auto" Grid.Row="16">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+            <Border Grid.Row="16">
+                <Grid Height="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Margin="1" VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="点击文本"/></TextBlock>
-                </Border>
-                <Border BorderBrush="#33CCFF" BorderThickness="1" Grid.Column="1" Grid.Row="0">
-                    <TextBox Margin="1" AcceptsReturn="true" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" BorderThickness="0" TextChanged="MyTextBox_TextChanged"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ><Run Language="zh-cn" Text="点击文本"/></TextBlock>
+                    <TextBox Grid.Column="1"  AcceptsReturn="true" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" TextChanged="MyTextBox_TextChanged"
                          ToolTip="点击AI后文本回复词库, 以“，”分割"
                                        Name="点击文本"/>
-                </Border>
-            </Grid>
+                </Grid>
+            </Border>
         </Grid>
+
     </DockPanel>
 </Window>

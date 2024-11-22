@@ -1,10 +1,13 @@
 ﻿using Microsoft.Win32;
+using System.ComponentModel;
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using Windows.UI.ViewManagement;
 
 namespace AIAgentConfigurationEditorwithWPFInterface
 {
@@ -112,7 +115,6 @@ namespace AIAgentConfigurationEditorwithWPFInterface
             有改动();
         private void MyCheckBox_Click(object sender, RoutedEventArgs e) =>
              有改动();
-
 
         private void 有改动()
         {
