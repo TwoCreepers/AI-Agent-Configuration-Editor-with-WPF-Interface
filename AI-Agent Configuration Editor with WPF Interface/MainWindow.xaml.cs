@@ -190,12 +190,12 @@ namespace AI_Agent_Configuration_Editor_with_WPF_Interface
             });
             foreach (var item in 角色外观列表)
             {
-                this.角色外观.Items.Add(item);
+                this.角色外观.Items.Add(item.FullName);
             }
-            this.角色外观.SelectedItem = virtualPetConfig.gif;
+            this.角色外观.SelectedItem = Path.GetFullPath(Path.Combine(configFile?.Directory?.FullName ?? "./", virtualPetConfig.gif));
 
             this.语言模型.Items.Clear();
-            var ttsConfig = JsonSerializer.Deserialize<TTSConfig>(File.ReadAllText(System.IO.Path.Combine(configFile.Directory?.ToString() ?? "./", "tools", "GPT-SoVITS-Inference", "trained", "character_info.json")));
+            var ttsConfig = JsonSerializer.Deserialize<TTSConfig>(File.ReadAllText(System.IO.Path.Combine(configFile?.Directory?.ToString() ?? "./", "tools", "GPT-SoVITS-Inference", "trained", "character_info.json")));
             if (ttsConfig != null)
             {
                 foreach (var item in ttsConfig.characters_and_emotions)
